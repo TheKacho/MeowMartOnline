@@ -1,4 +1,6 @@
 using MeowMartOnline.Api.Data;
+using MeowMartOnline.Api.Repositories;
+using MeowMartOnline.Api.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,7 @@ builder.Services.AddDbContextPool<MeowMartOnlineDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MeowMartOnlineConnection"))
 );
 
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
